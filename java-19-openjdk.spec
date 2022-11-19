@@ -1,7 +1,7 @@
 # Use gcc instead of clang
 # As of 17.0.1/clang 13, we get compile time crashes
 %bcond_without gcc
-%bcond_with system_jdk
+%bcond_without system_jdk
 # Without bootstrap, the package BuildRequires
 # rpm-javamacros (which in turn requires this package)
 # so jmod(*) and java(*) Provides: can be generated correctly.
@@ -35,7 +35,7 @@
 %endif
 
 Name:		java-19-openjdk
-Version:	19.0.0.%{minor}
+Version:	19.0.2.%{minor}
 Release:	1
 Summary:	Java Runtime Environment (JRE) %{major}
 Group:		Development/Languages
@@ -122,6 +122,7 @@ OpenJDK Java runtime and development environment
 %%package module-%{1}\
 Summary: The Java %{1} module, provided by OpenJDK\
 Group: Development/Languages\
+%{?with_system_jdk:Provides: jre-current-module-%{1} = %{EVRD}}\
 %%description module-%{1}\
 The Java %{1} module, provided by OpenJDK\
 %%files module-%{1}\
